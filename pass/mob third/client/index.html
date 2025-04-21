@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KPlus - Premium Mobile Repair at Your Doorstep</title>
+  <meta name="description" content="Professional mobile phone repair services at your doorstep. Screen replacements, battery issues, water damage repair and more.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Auth Modal (now always visible until logged in) -->
+  <div class="auth-modal" id="authModal">
+    <div class="modal-content">
+      <!-- Login/Signup Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="loginTab">Login</button>
+        <button class="auth-tab" id="signupTab">Sign Up</button>
+      </div>
+      
+      <!-- Login Form -->
+      <div id="loginForm" class="auth-form active">
+        <h2>Login to Your Account</h2>
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email" required>
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password" required>
+          <i class="fas fa-lock"></i>
+        </div>
+        <button class="auth-btn" id="loginSubmitBtn">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+      </div>
+      
+      <!-- Signup Form -->
+      <div id="signupForm" class="auth-form">
+        <h2>Create New Account</h2>
+        <div class="form-group">
+          <label for="signupName">Full Name</label>
+          <input type="text" id="signupName" placeholder="Enter your full name" required>
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="form-group">
+          <label for="signupEmail">Email Address</label>
+          <input type="email" id="signupEmail" placeholder="Enter your email" required>
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="form-group">
+          <label for="signupPhone">Phone Number</label>
+          <input type="tel" id="signupPhone" placeholder="Enter phone number" required>
+          <i class="fas fa-phone"></i>
+        </div>
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" placeholder="Create password (min 6 chars)" required>
+          <i class="fas fa-lock"></i>
+        </div>
+        <div class="form-group">
+          <label for="signupConfirmPassword">Confirm Password</label>
+          <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required>
+          <i class="fas fa-lock"></i>
+        </div>
+        <button class="auth-btn" id="signupSubmitBtn">
+          <i class="fas fa-user-plus"></i> Create Account
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content (hidden by default) -->
+  <div id="mainContent" style="display: none;">
+    <header>
+      <div class="logo">
+        <i class="fas fa-mobile-alt"></i>
+        KPlus
+      </div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#services">Services</a>
+        <a href="#features">Why Us</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="location">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Islampur, Sangli</span>
+        </div>
+        
+        <div class="user-avatar-btn" id="userAvatarBtn">
+          <!-- Initials will be added here -->
+        </div>
+        
+        <button class="cta-button" id="bookNowBtn">
+          <i class="fas fa-phone-alt"></i> Book Now
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Slider -->
+    <section class="hero">
+      <div class="slider-container" id="sliderContainer">
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Professional Repair Service">
+          <div class="slide-content">
+            <h1>Premium Phone Repairs at Your Doorstep</h1>
+            <p>We come to you with all the tools and parts needed for a perfect repair</p>
+            <a href="#services" class="slide-btn">Our Services</a>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fast Repair Service">
+          <div class="slide-content">
+            <h1>Fast & Reliable Mobile Repairs</h1>
+            <p>Most repairs completed in under 60 minutes with 12-month warranty</p>
+            <a href="#contact" class="slide-btn">Contact Us</a>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Quality Parts">
+          <div class="slide-content">
+            <h1>Genuine & High-Quality Parts</h1>
+            <p>We use only OEM or premium aftermarket parts for lasting repairs</p>
+            <a href="#services" class="slide-btn">View Parts</a>
+          </div>
+        </div>
+      </div>
+      <div class="slider-nav">
+        <span class="prev"><i class="fas fa-chevron-left"></i></span>
+        <span class="next"><i class="fas fa-chevron-right"></i></span>
+      </div>
+      <div class="slider-controls">
+        <div class="slider-dot active"></div>
+        <div class="slider-dot"></div>
+        <div class="slider-dot"></div>
+      </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+      <h2 class="section-title">DOORSTEP PHONE REPAIRS</h2>
+      <p class="section-subtitle">Get started with your repair by clicking below</p>
+      <a href="second_page.html" class="get-started-btn"
+     class="get-started-btn" 
+     style="
+       display: inline-block;
+       margin-top: 20px;
+       padding: 16px 32px;
+       font-size: 1.25rem;
+       font-weight: 600;
+       background: linear-gradient(135deg, #007bff, #00c6ff);
+       color: #fff;
+       border-radius: 50px;
+       text-decoration: none;
+       box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+       transition: all 0.3s ease;
+     "
+    onmouseover="this.style.transform='scale(1.05)'"
+    onmouseout="this.style.transform='scale(1)'"
+   
+  >
+    🚀 Get Started
+  </a>
+  
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+      <h2 class="section-title">Our Repair Services</h2>
+      <p class="section-subtitle">We fix all major brands and models with premium quality parts</p>
+      
+      <div class="services-container">
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Display Broken">
+          </div>
+          <div class="service-info">
+            <h3>Screen Replacement</h3>
+            <p>Broken or cracked display? We'll replace it with a high-quality screen.</p>
+            <div class="service-price">From ₹2,499</div>
+            <button class="service-btn">Book Now</button>
+          </div>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1547721064-da6cfb341d50?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Battery Issue">
+          </div>
+          <div class="service-info">
+            <h3>Battery Replacement</h3>
+            <p>Is your battery draining fast? We'll install a new high-capacity battery.</p>
+            <div class="service-price">From ₹1,499</div>
+            <button class="service-btn">Book Now</button>
+          </div>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.ZQva1gla2s7Z37fHw9WpNAHaE7&pid=Api&P=0&h=180" alt="Water damaged phone" style="width:100%; height:auto;">
+          </div>
+          <div class="service-info">
+            <h3>Water Damage Repair</h3>
+            <p>Phone got wet? We'll clean and repair water damage to save your device.</p>
+            <div class="service-price">From ₹1,999</div>
+            <button class="service-btn">Book Now</button>
+          </div>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1564466809058-bf4114d55352?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Camera Issue">
+          </div>
+          <div class="service-info">
+            <h3>Camera Repair</h3>
+            <p>Blurry or broken camera? We'll replace it with an OEM-quality part.</p>
+            <div class="service-price">From ₹1,799</div>
+            <button class="service-btn">Book Now</button>
+          </div>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Speaker Problem">
+          </div>
+          <div class="service-info">
+            <h3>Speaker/Microphone</h3>
+            <p>Can't hear or be heard? We'll fix your audio issues quickly.</p>
+            <div class="service-price">From ₹999</div>
+            <button class="service-btn">Book Now</button>
+          </div>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Charging Port">
+          </div>
+          <div class="service-info">
+            <h3>Charging Port Repair</h3>
+            <p>Phone not charging? We'll replace your charging port quickly.</p>
+            <div class="service-price">From ₹1,299</div>
+            <button class="service-btn">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <h2 class="section-title">Why Choose KPlus?</h2>
+      <p class="section-subtitle">We're committed to providing the best mobile repair experience</p>
+      
+      <div class="features-container">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3>Doorstep Service</h3>
+          <p>We come to your home or office at your convenience. No need to go anywhere!</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>Fast Repairs</h3>
+          <p>Most repairs completed in under 60 minutes while you wait.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>12-Month Warranty</h3>
+          <p>All our repairs come with a 12-month warranty for your peace of mind.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3>Quality Parts</h3>
+          <p>We use only OEM or premium aftermarket parts for lasting repairs.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-rupee-sign"></i>
+          </div>
+          <h3>Price Match</h3>
+          <p>Found a better price? We'll match it for the same quality service.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h3>Certified Technicians</h3>
+          <p>Our technicians are certified and trained on the latest devices.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2 class="section-title">Ready to Repair Your Device?</h2>
+      <p class="section-subtitle">Book your repair today and get back to using your phone like new</p>
+      
+      <div class="cta-buttons">
+        <a href="tel:+919876543210" class="cta-btn primary">
+          <i class="fas fa-phone-alt"></i> Call Now
+        </a>
+        <a href="https://wa.me/919876543210" class="cta-btn secondary">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Find answers to common questions about our services</p>
+      
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How long does a typical repair take?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Most common repairs like screen or battery replacements take about 30-60 minutes. More complex repairs may take longer, but we'll always give you an accurate time estimate before starting.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Do you offer any warranty on repairs?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! All our repairs come with a 12-month warranty covering both parts and labor. If you experience any issues with your repair within this period, we'll fix it at no additional cost.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What areas do you service?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We currently service all areas in Islampur and surrounding regions within 20km. If you're unsure whether we cover your location, please call or WhatsApp us to confirm.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What payment methods do you accept?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We accept cash, UPI payments (PhonePe, Google Pay, Paytm), and major credit/debit cards. Payment is due upon completion of the repair.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Do I need to backup my data before repair?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>While most repairs don't affect your data, we always recommend backing up important data as a precaution. For water damage repairs, we offer data recovery services if needed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>KPlus</h3>
+          <p>Premium mobile repair services at your doorstep. We come to you with all the tools and parts needed for a perfect repair.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#features">Why Choose Us</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Our Services</h3>
+          <ul class="footer-links">
+            <li><a href="#">Screen Replacement</a></li>
+            <li><a href="#">Battery Replacement</a></li>
+            <li><a href="#">Water Damage Repair</a></li>
+            <li><a href="#">Camera Repair</a></li>
+            <li><a href="#">Charging Port Repair</a></li>
+            <li><a href="#">Speaker/Microphone Repair</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <div class="contact-info">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>123 Main Street, Islampur, Sangli, Maharashtra 415409</span>
+          </div>
+          <div class="contact-info">
+            <i class="fas fa-phone-alt"></i>
+            <span>+91 98765 43210</span>
+          </div>
+          <div class="contact-info">
+            <i class="fas fa-envelope"></i>
+            <span>support@kplus.com</span>
+          </div>
+          <div class="contact-info">
+            <i class="fas fa-clock"></i>
+            <span>Mon-Sun: 8:00 AM - 9:00 PM</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2023 KPlus. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apple Repair & Replacement</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: #212529;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header/Breadcrumb */
+    .breadcrumb {
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 20px;
+      padding: 15px 0;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding-left: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .breadcrumb a {
+      color: #0d6efd;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .breadcrumb a:hover {
+      color: #0b5ed7;
+    }
+
+    .breadcrumb a:not(:last-child):after {
+      content: "›";
+      margin: 0 8px;
+      color: #6c757d;
+    }
+
+    /* Heading */
+    h1 {
+      font-size: 42px;
+      margin: 40px 0;
+      font-weight: 600;
+      text-align: center;
+      color: #212529;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    h1:after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #6f42c1, #d63384);
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Model Grid */
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    /* Model Card */
+    .model-card {
+      background: white;
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .model-card:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, #6f42c1, #d63384);
+    }
+
+    .model-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .model-image-container {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .model-image {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+      transition: all 0.4s ease;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+    }
+
+    .model-card:hover .model-image {
+      transform: scale(1.1) rotate(2deg);
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
+    }
+
+    .model-name {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      text-align: center;
+      color: #212529;
+      position: relative;
+      z-index: 2;
+    }
+
+    .model-year {
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .select-btn-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: auto;
+    }
+
+    .select-btn {
+      background: linear-gradient(to right, #6f42c1, #d63384);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 200px;
+      text-align: center;
+    }
+
+    .select-btn:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .select-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(111, 66, 193, 0.4);
+    }
+
+    .select-btn:hover:after {
+      left: 100%;
+    }
+
+    /* Repair Services Banner */
+    .services-banner {
+      background: linear-gradient(135deg, #6f42c1 0%, #d63384 100%);
+      border-radius: 15px;
+      padding: 40px;
+      margin: 60px 0;
+      color: white;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 15px 30px rgba(111, 66, 193, 0.2);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .services-banner:before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      transform: rotate(30deg);
+    }
+
+    .services-content {
+      flex: 1;
+      z-index: 2;
+    }
+
+    .services-image {
+      width: 40%;
+      max-width: 400px;
+      z-index: 2;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .services-title {
+      font-size: 32px;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .services-text {
+      font-size: 18px;
+      margin-bottom: 25px;
+      max-width: 600px;
+      opacity: 0.9;
+    }
+
+    .services-btn {
+      background: white;
+      color: #6f42c1;
+      border: none;
+      padding: 14px 35px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .services-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      margin: 80px 0;
+    }
+
+    .testimonials-title {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+      color: #212529;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      color: #333;
+      position: relative;
+    }
+
+    .testimonial-text:before {
+      content: '"';
+      font-size: 60px;
+      color: #6f42c1;
+      opacity: 0.1;
+      position: absolute;
+      top: -20px;
+      left: -10px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px;
+      border: 2px solid #6f42c1;
+    }
+
+    .author-info h4 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .author-info p {
+      font-size: 14px;
+      color: #6c757d;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #212529 0%, #000 100%);
+      color: #f8f9fa;
+      padding: 60px 20px 30px;
+      margin-top: 80px;
+      position: relative;
+    }
+
+    footer:before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(to bottom, rgba(33,37,41,0) 0%, rgba(33,37,41,1) 100%);
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+    }
+
+    .footer-section {
+      margin-bottom: 20px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 25px;
+      font-size: 18px;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-section h4:after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: #6f42c1;
+      border-radius: 3px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+      color: #adb5bd;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-section ul li a:hover {
+      color: #d63384;
+      transform: translateX(5px);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      color: #adb5bd;
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      color: #d63384;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 14px;
+      color: #6c757d;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .services-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .services-image {
+        width: 80%;
+        margin-top: 30px;
+      }
+      
+      .services-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 32px;
+      }
+      
+      .model-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      }
+      
+      .services-title {
+        font-size: 28px;
+      }
+      
+      .services-text {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .breadcrumb {
+        font-size: 12px;
+      }
+      
+      .model-card {
+        padding: 20px;
+      }
+      
+      .services-banner {
+        padding: 30px 20px;
+      }
+      
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="#">Home</a>
+      <a href="#">Repair</a>
+      <a href="#">Apple</a>
+      <span>iPhone Models</span>
+    </div>
+
+    <h1>Select Your iPhone Model</h1>
+
+    <div class="model-grid" id="modelGrid">
+      <!-- Models will be inserted here by JavaScript -->
+    </div>
+
+    <div class="services-banner">
+      <div class="services-content">
+        <h2 class="services-title">Premium Repair Services</h2>
+        <p class="services-text">Our certified technicians use genuine Apple parts to ensure your device performs like new. Fast, reliable service with a 1-year warranty on all repairs.</p>
+        <button class="services-btn">View All Services</button>
+      </div>
+      <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Apple Repair" class="services-image">
+    </div>
+
+    <div class="testimonials">
+      <h2 class="testimonials-title">What Our Sangli Customers Say</h2>
+      <div class="testimonial-grid">
+          <div class="testimonial-card">
+              <p class="testimonial-text">"Got my iPhone screen replaced same day near Sangli Stand. Better service than Apple stores in Pune!"</p>
+              <div class="testimonial-author">
+                  
+                  <div class="author-info">
+                      <h4>Anjali Kulkarni</h4>
+                      <p>Khanbhag Resident</p>
+                  </div>
+              </div>
+          </div>
+          <div class="testimonial-card">
+              <p class="testimonial-text">"Fixed water damage from Krishna River boating accident. Saved my Ganpati festival photos!"</p>
+              <div class="testimonial-author">
+                 
+                  <div class="author-info">
+                      <h4>Rajesh Patil</h4>
+                      <p>Near Sangli Railway Station</p>
+                  </div>
+              </div>
+          </div>
+          <div class="testimonial-card">
+              <p class="testimonial-text">"Best iPhone service in Sangli-Miraj area. Repaired charging port while I shopped at Agrani Bazar!"</p>
+              <div class="testimonial-author">
+                 
+                  <div class="author-info">
+                      <h4>Priya Deshmukh</h4>
+                      <p>College Road Customer</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Repair Services</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Screen Replacement</a></li>
+          <li><a href="#">Battery Service</a></li>
+          <li><a href="#">Water Damage Repair</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <ul>
+          <li><i class="fas fa-envelope"></i> kpluslava@gmail.com</li>
+          <li><i class="fas fa-phone"></i> +91 7020771826</li>
+          <li><i class="fas fa-map-marker-alt"></i> Khanbhag,fauzadar lane,near panjab national bank and sangli stand, sangli, maharashtra</li>
+        </ul>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Business Hours</h4>
+        <ul>
+          <li>Monday - Friday: 9AM - 8PM</li>
+          <li>Saturday: 10AM - 6PM</li>
+          <li>Sunday: 11AM - 4PM</li>
+        </ul>
+        <div style="margin-top: 20px;">
+          <img src="https://via.placeholder.com/150x50?text=Apple+Certified" alt="Apple Certified" style="filter: brightness(0) invert(1); opacity: 0.8;">
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Apple Repair & Replacement. All rights reserved. | <a href="#" style="color: #adb5bd;">Privacy Policy</a> | <a href="#" style="color: #adb5bd;">Terms of Service</a>
+    </div>
+  </footer>
+
+  <script>
+    // iPhone models data with new images
+    const iphoneModels = [
+      { 
+        name: "iPhone 15 Pro Max", 
+        year: "2023",
+        image: "https://th.bing.com/th/id/OIP.0vG8_FUIhejk5KJNExa-ZgHaHa?w=250&h=250&c=8&rs=1&qlt=90&r=0&o=6&dpr=1.3&pid=3.1&rm=2",
+       repairPage: "15promax.html"
+      },
+      { 
+        name: "iPhone 15 Pro", 
+        year: "2023",
+        image: "https://th.bing.com/th/id/OIP.vz6dz6X1MH3y7Br0hSQRQgHaHa?w=250&h=250&c=8&rs=1&qlt=90&r=0&o=6&dpr=1.3&pid=3.1&rm=2",
+        repairPage: "15pro.html"
+      },
+      { 
+        name: "iPhone 15 Plus", 
+        year: "2023",
+        image: "https://th.bing.com/th/id/OIP.8WJv8JDQdwUHyiR-axmP6wHaHa?w=166&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        repairPage: "15plus.html"
+      },
+      { 
+        name: "iPhone 15", 
+        year: "2023",
+        image: "data:image/jpeg;base64,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",
+      repairPage: "15.html"
+      },
+      { 
+        name: "iPhone 14 Pro Max", 
+        year: "2022",
+        image: "data:image/jpeg;base64,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",
+        repairPage: "14promax.html"
+      },
+      { 
+        name: "iPhone 14 Pro", 
+        year: "2022",
+        image: "https://tse2.mm.bing.net/th?id=OIP.aWq-klH-sm_l7rSUEo827wHaFj&pid=Api&P=0&h=180",
+        repairPage: "14pro.html"
+      },
+     /* { 
+        name: "iPhone 14 Plus", 
+        year: "2022",
+        image: "https://tse3.mm.bing.net/th?id=OIP.e943jRQHTUQBM4LXS9w6mgHaHa&pid=Api&P=0&h=180"
+      },
+      { 
+        name: "iPhone 14", 
+        year: "2022",
+        image: "https://fdn.gsmarena.com/imgroot/reviews/22/apple-iphone-14-pro/lifestyle/-1200w5/gsmarena_002.jpg"
+      },
+      { 
+        name: "iPhone 13 Pro Max", 
+        year: "2021",
+        image: "https://tse4.mm.bing.net/th?id=OIP.faVUF4hoLwns3_em7iIiIAHaHa&pid=Api&P=0&h=180"
+      },
+      { 
+        name: "iPhone 13 Pro", 
+        year: "2021",
+        image: "https://tse2.mm.bing.net/th?id=OIP.FfYzOKlg0tMJQLatedDoeAHaHa&pid=Api&P=0&h=180"
+      },
+      { 
+        name: "iPhone 13", 
+        year: "2021",
+        image: "https://tse1.mm.bing.net/th?id=OIP.0cxXv9kSYwUWUW8cbqg34wHaHB&pid=Api&P=0&h=180"
+      },
+      { 
+        name: "iPhone 13 mini", 
+        year: "2021",
+        image: "https://tse3.mm.bing.net/th?id=OIP.xFdqAlUMzAoKodbUgQ7iIAHaEK&pid=Api&P=0&h=180"
+      }*/
+    ];
+
+    /*// Function to create model cards
+    function createModelCards() {
+      const modelGrid = document.getElementById('modelGrid');
+      
+      iphoneModels.forEach(model => {
+        const card = document.createElement('div');
+        card.className = 'model-card';
+        
+        card.innerHTML = `
+          <div class="model-image-container">
+            <img src="${model.image}" alt="${model.name}" class="model-image">
+          </div>
+          <h3 class="model-name">${model.name}</h3>
+          <p class="model-year">${model.year}</p>
+          <div class="select-btn-container">
+            <button class="select-btn">Select Model</button>
+          </div>
+        `;
+        
+        modelGrid.appendChild(card);
+      });
+    }
+*/
+
+
+
+
+
+/*function createModelCards() {
+  const modelGrid = document.getElementById('modelGrid');
+  
+  iphoneModels.forEach(model => {
+    const card = document.createElement('div');
+    card.className = 'model-card';
+    
+    card.innerHTML = `
+      <div class="model-image-container">
+        <img src="${model.image}" alt="${model.name}" class="model-image">
+      </div>
+      <h3 class="model-name">${model.name}</h3>
+      <p class="model-year">${model.year}</p>
+      <div class="select-btn-container">
+        <button class="select-btn">Select Model</button>
+      </div>
+    `;
+    
+    // Attach event listener to the button
+    const button = card.querySelector('.select-btn');
+    button.addEventListener('click', () => selectModel(model.name));
+    
+    modelGrid.appendChild(card);
+  });
+}
+
+function selectModel(modelName) {
+  const filename = modelName.toLowerCase()
+                           .replace(/\s+/g, '')
+                           .replace('iphone', '') + '.html';
+  window.location.href = filename; // Adjust path if needed
+}
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', createModelCards);
+
+
+
+    function selectModel(modelName) {
+  const filename = modelName.toLowerCase().replace(/\s+/g, '').replace('iphone', '') + '.html';
+  window.location.href = '../' + filename; // Key modification here
+}*/
+   // Function to create model cards
+   function createModelCards() {
+      const modelGrid = document.getElementById('modelGrid');
+      
+      iphoneModels.forEach(model => {
+        const card = document.createElement('div');
+        card.className = 'model-card';
+        
+        card.innerHTML = `
+          <div class="model-image-container">
+            <img src="${model.image}" alt="${model.name}" class="model-image">
+          </div>
+          <h3 class="model-name">${model.name}</h3>
+          <p class="model-year">${model.year}</p>
+          <div class="select-btn-container">
+            <button class="select-btn">Select Model</button>
+          </div>
+        `;
+        
+        // Add click handler to the button
+        card.querySelector('.select-btn').addEventListener('click', () => {
+          selectModel(model.repairPage);
+        });
+        
+        modelGrid.appendChild(card);
+      });
+    }
+
+    // Uncomment and fix the selectModel function
+    function selectModel(repairPage) {
+      if (!repairPage) {
+        console.error('Repair page not defined for this model');
+        return;
+      }
+      window.location.href = repairPage;
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', createModelCards);
+</script>
+  </script>
+</body>
+</html>
